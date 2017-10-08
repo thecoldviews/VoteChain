@@ -1,0 +1,30 @@
+{% include "header.html" %}
+
+<div class="row">
+  <div class="small-8 columns">
+    <img id="bg" src="/video_viewer" width="100%">
+  </div>
+  <div class="small-4 columns text-right">
+  <form id="post-form" action='/complete_registeration', method="post">
+    <input id="ido" type="text" name="ido" placeholder="Aadhar Card Number" onkeypress="return blockSpecialChar(event)" required>
+    <select id="constituency" name="constituency">
+      <option value="Shalimar Bagh">Shalimar Bagh</option>
+      <option value="Punjabi Bagh">Punjabi Bagh</option>
+      <option value="Moti Nagar">Moti Nagar</option>
+      <option value="Mayur Vihar">Mayur Vihar</option>
+    </select>
+    <input id="dob" type="date" placeholder="Date of Birth" name="dob" required>
+    <input id="contact" type="text" placeholder="Contact Number" name="dob" onkeypress="return blockSpecialChar(event)" required>
+    <div class="small-4 columns">
+      <input id="post" type="submit" id value="Submit" onkeypress="return blockSpecialChar(event)" class="button np fullwidth">
+    </div>
+  </form>
+  </div>
+</div>
+<div class = "row text-center">
+<h2>Please Fill The Details On The Right Of Your Screen, While We Create Your Unique Ballot</h2>
+</div>
+<body>
+
+<script type="text/javascript" src="/static/js/vote.js"></script>
+{% include "footer.html" %}

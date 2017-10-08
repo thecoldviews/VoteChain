@@ -1,0 +1,46 @@
+<head>
+<link rel="stylesheet" href="/static/css/style.css" type="text/css" />
+<script src="/static/bower_components/modernizr/modernizr.js"></script>
+<link rel="icon" type="image/png" href="/static/images/logo.png">
+<style type="text/css">
+.container{display:inline-block;width:320px;}
+</style>
+<script type="text/javascript">
+function blockSpecialChar(e){
+    var k;
+    document.all ? k = e.keyCode : k = e.which;
+    return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57));
+    }
+</script>
+</head>
+<body class="dashboard">
+  <div class="contain-to-grid sticky">
+    <nav class="top-bar" data-topbar role="navigation">
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="/"><img src="static/images/logo_long.png" alt="VoteChain" id="plogo" width="70%"></a></h1>
+        </li>
+      </ul>
+      <section class="top-bar-section ic-pr">
+        <ul class="right">
+          <li>
+            <a href="/preparation_registeration">Register</a>
+          </li>
+          <li>
+            <a href="/preparation_vote">Vote</a>
+          </li>
+          <li>
+            <a href="/tally">Tally</a>
+          </li>
+        </ul>
+      </section>
+    </nav>
+  </div>
+  <div class="row">
+    <div class="small-6 columns small-centered" id="alert-hook">
+      <div data-alert id="alert-box" class="alert-box-wrapper alert-box alert radius" style="display:none;">
+        Loading...
+        <a href="#" class="close">&times;</a>
+      </div>
+    </div>
+  </div>

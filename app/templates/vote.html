@@ -1,0 +1,22 @@
+{% include "header.html" %}
+
+<div class="row">
+  <div class="small-8 columns">
+    <img id="bg" src="/video_viewer" width="100%">
+    <button id="record">Start</button>
+    <button id="stop">Stop</button>
+  </div>
+  <div class="small-4 columns text-right">
+  <form id="post-form">
+    <textarea id="postArea" class="nm" rows="2" required placeholder="Say Something"></textarea>
+    <div class="small-4 columns">
+      <input id="post" type="submit" id value="Send Registeration Request" class="button tiny nm fullwidth">
+    </div>
+  </form>
+  </div>
+</div>
+<body>
+
+<!-- 
+<script type="text/javascript" src="/static/js/vote.js"></script> -->
+{% include "footer.html" %}
