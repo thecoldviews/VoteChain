@@ -6,6 +6,7 @@
   </div>
   <div class="small-4 columns text-right">
   <form id="post-form" action='/complete_registeration', method="post">
+  <input id="name" type="text" name="name" placeholder="Name" onkeypress="return blockSpecialChar(event)" required>
     <input id="ido" type="text" name="ido" placeholder="Aadhar Card Number" onkeypress="return blockSpecialChar(event)" required>
     <select id="constituency" name="constituency">
       <option value="Shalimar Bagh">Shalimar Bagh</option>
@@ -16,7 +17,7 @@
     <input id="dob" type="date" placeholder="Date of Birth" name="dob" required>
     <input id="contact" type="text" placeholder="Contact Number" name="dob" onkeypress="return blockSpecialChar(event)" required>
     <div class="small-4 columns">
-      <input id="post" type="submit" id value="Submit" onkeypress="return blockSpecialChar(event)" class="button np fullwidth">
+      <input id="post" type="submit" id value="Submit" class="button np fullwidth">
     </div>
   </form>
   </div>

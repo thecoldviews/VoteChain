@@ -2,15 +2,17 @@
 
 <div class="row">
   <div class="small-8 columns">
-    <img id="bg" src="/video_viewer" width="100%">
-    <button id="record">Start</button>
-    <button id="stop">Stop</button>
+    <img id="bg" src="/video_viewer_face" width="100%">
   </div>
   <div class="small-4 columns text-right">
-  <form id="post-form">
-    <textarea id="postArea" class="nm" rows="2" required placeholder="Say Something"></textarea>
+  <form id="post-form" action="/complete_vote">
+    <h3> <b>Name</b> : {{ name }}</h3>
+    <h3> <b>Aadhar</b> : {{ id }}</h3>
+    <h3> <b>Constituency</b> : {{ cons }}</h3>
+    <h2>Please Vote - </h2>
+    <h1>Jai Modi</h1>
     <div class="small-4 columns">
-      <input id="post" type="submit" id value="Send Registeration Request" class="button tiny nm fullwidth">
+      <input id="post" type="submit" id value="Vote" class="button tiny nm fullwidth">
     </div>
   </form>
   </div>

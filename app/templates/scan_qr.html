@@ -1,39 +1,22 @@
-<head>
-<link rel="stylesheet" href="/static/css/style.css" type="text/css" />
-<script src="/static/bower_components/modernizr/modernizr.js"></script>
-<link rel="icon" type="image/png" href="/static/images/logo.png">
-<style type="text/css">
-.container{display:inline-block;width:320px;}
-</style>
-</head>
-<body class="dashboard">
-  <div class="contain-to-grid sticky">
-    <nav class="top-bar" data-topbar role="navigation">
-      <ul class="title-area">
-        <li class="name">
-          <h1><a href="/"><img src="static/images/logo_long.png" alt="VoteChain" id="plogo" width="70%"></a></h1>
-        </li>
-      </ul>
-      <section class="top-bar-section ic-pr">
-        <ul class="right">
-          <li>
-            <a href="/preparation_registeration">Register</a>
-          </li>
-          <li>
-            <a href="/preparation_vote">Vote</a>
-          </li>
-          <li>
-            <a href="/tally">Tally</a>
-          </li>
-        </ul>
-      </section>
-    </nav>
+{% include "header.html" %}
+
+<div class="row">
+  <div class="small-8 columns">
+    <img id="bg" src="/video_viewer_qr" width="100%">
   </div>
-  <div class="row">
-    <div class="small-6 columns small-centered" id="alert-hook">
-      <div data-alert id="alert-box" class="alert-box-wrapper alert-box alert radius" style="display:none;">
-        Loading...
-        <a href="#" class="close">&times;</a>
-      </div>
+  <div class="small-4 columns text-right">
+  <form id="post-form" action="/preparation_vote_2">
+    <div class="small-4 columns">
+      <input id="post" type="submit" id value="Send Registeration Request" class="button tiny nm fullwidth">
     </div>
+  </form>
   </div>
+</div>
+<div class="row text-center">
+<h2>Hold Up Your QR Code in front of the WebCam. Refresh to Try Again</h2>
+</div>
+<body>
+
+<!-- 
+<script type="text/javascript" src="/static/js/vote.js"></script> -->
+{% include "footer.html" %}
