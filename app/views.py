@@ -16,6 +16,8 @@ from base64 import urlsafe_b64encode, urlsafe_b64decode
 from mimetypes import types_map
 from io import BytesIO
 import cStringIO
+# import qrtools
+
 # import zbar
 # from PIL import Image
 
@@ -130,6 +132,10 @@ def complete_registeration():
     return render_template('complete_registeration.html', idi = str(ids))
 
 # Vote
+@app.route('/preparation_vote_2', methods=['GET'])
+def preparation_vote_2():
+    return render_template('preparation_vote_2.html')
+
 @app.route('/preparation_vote', methods=['GET'])
 def preparation_vote():
     return render_template('preparation_vote.html')
@@ -154,53 +160,73 @@ def complete_vote():
 
 def getConstituency(qrcode_detail):
     try:
-        elements = p.split("&")
+        elements = qrcode_detail.split("&")
         return elements[2]
     except Exception as e:
+        print(e)
         print(qrcode_detail)
         return None
 
 def getName(qrcode_detail):
     try:
-        elements = p.split("&")
+        elements = qrcode_detail.split("&")
         return elements[1]
     except Exception as e:
+        print(e)
         print(qrcode_detail)
         return None
     
 def getID(qrcode_detail):
     try:
-        elements = p.split("&")
+        elements = qrcode_detail.split("&")
         return elements[0]
     except Exception as e:
+        print(e)
         print(qrcode_detail)
         return None
     
 def getFaceEncoding(qrcode_detail):
     try:
-        elements = p.split("&")
+        elements = qrcode_detail.split("&")
         string_numpy = elements[3]
 
         if string_numpy[-1]==";":
             string_numpy = string_numpy[:-1]
-        rows = string_numpy.split(";")
 
+        rows = string_numpy.split(";")
+        print(rows)
         num_rows = len(rows)
 
-        if len(rows)>0:
-            columns_row1 = row[0].split(",")
+        if len(rows)>1:
+            print("here")
+            columns_row1 = rows[0].split(",")
             num_cols = len(columns_row1)
+            numpy_array = np.array(np.zeros([num_rows,num_cols]))
 
-        numpy_array = np.array(np.zeros[num_rows,num_cols])
+            for row in range(len(rows)):
+                columns = row.split(",")
+                print(columns)
+                for column in range(len(columns)):
+                    numpy_array[row][column] = float(columns[column])
 
-        for row in range(len(rows)):
-            columns = row.split(",")
-            for column in range(len(columns)):
-                numpy_array[row][column] = float(column)
+        else:
+            num_rows = len(rows[0].split(","))
+            num_cols = 1
+            numpy_array = np.array(np.zeros(num_rows))
+
+            rows = rows[0].split(',')
+            for row in range(num_rows):
+                try:
+                    numpy_array[row] = float(rows[row])
+                except Exception as e:
+                    print(e)
+                    print("ye - "+str(rows[row]))
+            
 
         return numpy_array
 
     except Exception as e:
+        print(e)
         print(qrcode_detail)
         return None
 
@@ -345,7 +371,7 @@ def video_viewer():
 def video_viewer_qr():
     view = video_stream_find_qr()
     if view == True:
-      return redirect("/vote")
+      return redirect("/preparation_vote_2")
     else:
       return Response(view,
                     mimetype='multipart/x-mixed-replace; boundary=frame')
@@ -364,7 +390,6 @@ def video_stream_find_face():
     global global_frame
     global qrcode_detail
     global face_rep_times
-    global name
     global face_verified
         
     while face_rep_times < 50 and video_camera!= None:
@@ -394,6 +419,7 @@ def video_stream_find_face():
 
                 # See if the face is a match for the known face(s)
                 face_rep = getFaceEncoding(qrcode_detail)
+                name = getName(qrcode_detail)
 
                 if face_rep == None:
                     text = "Invalid QR Mask"
@@ -530,8 +556,8 @@ def video_stream_find_qr():
 
             # Prints data from image.
             for decoded in zbar_image:
-                print("FOUND THIS IN BACKUP - ")
-                print(decoded.data)
+                # print("FOUND THIS IN BACKUP - ")
+                # print(decoded.data)
                 qrcode_detail = decoded.data
                 break
 
