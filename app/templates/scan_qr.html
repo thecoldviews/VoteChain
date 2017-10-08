@@ -1,16 +1,23 @@
 {% include "header.html" %}
 
+<form enctype="multipart/form-data" action="http://api.qrserver.com/v1/read-qr-code/" method="POST">
+<!-- MAX_FILE_SIZE (maximum file size in bytes) must precede the file input field used to upload the QR code image -->
+<input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
+<!-- The "name" of the input field has to be "file" as it is the name of the POST parameter -->
+Choose QR code image to read/scan: <input name="file" type="file" />
+<input type="submit" value="Read QR code" />
+</form>
+
 <div class="row text-center">
-  <img id="bg" src="/video_viewer_qr" width="50%">
-  <form id="post-form" action="/preparation_vote_2">
-  <img src="/static/images/qr_gen.png" width = "30%">
-      <br>
-          <br>
-  <input id="post" type="submit" id value="Move Ahead" class="button">
+
+  <form action = "/scan_qr" method = "POST" 
+     enctype = "multipart/form-data">
+     <input type = "file" name = "file" />
+     <input type = "submit"/>
   </form>
 </div>
 <div class="row text-center">
-<h2>Hold Up Your QR Code in front of the WebCam. Refresh to Try Again</h2>
+<h2>Upload Your QR Code</h2>
 </div>
 <body>
 
