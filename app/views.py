@@ -141,7 +141,7 @@ def preparation_vote_2():
 def preparation_vote():
     return render_template('preparation_vote.html')
 
-@app.route('/complete_vote', methods=['POST'])
+@app.route('/complete_vote')
 def complete_vote():
     global face_verified
     global face_rep_times
@@ -153,7 +153,7 @@ def complete_vote():
         if face_verified == True:
             # fetch vote
             # POST DATA ONTO BLOCKCHAIN
-            return render_template('complete_vote.html',status = True, message = "Please Proceed To The Voting Channel")
+            return render_template('complete_vote.html',status = True, message = "Please Proceed")
     else:
             return render_template('complete_vote.html',status = False, message = "Failed the Face Verification. Please Retry")
 
@@ -452,6 +452,7 @@ def video_stream_find_face():
                         face_verified = True
                     else:
                         text = "Matching... "+str(50 - face_rep_times)
+                        face_verified = False
 
                     face_rep = face_encoding
 
