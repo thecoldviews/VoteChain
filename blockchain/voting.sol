@@ -43,7 +43,7 @@ contract Voting {
 
   // This function increments the vote count for the specified candidate. This
   // is equivalent to casting a vote
-  function voteForCandidate(bytes32 candidate, bytes32 voter, bytes32 constituency) returns (bool,string){
+  function voteForCandidate(bytes32 candidate) returns (bool,string){
 
     bool validCandidateBool;
     string memory validCandidateString;

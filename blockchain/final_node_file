@@ -2,13 +2,13 @@ Web3 = require('web3')
 web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 web3.eth.accounts
 
-code = fs.readFileSync('Voting.sol').toString()
+code = fs.readFileSync('voting.sol').toString()
 solc = require('solc')
 compiledCode = solc.compile(code)
 abiDefinition = JSON.parse(compiledCode.contracts[':Voting'].interface)
 VotingContract = web3.eth.contract(abiDefinition)
 byteCode = compiledCode.contracts[':Voting'].bytecode
-deployedContract = VotingContract.new(['Rama','Nick','Jose'],['Kolkata','Bengaluru','Delhi'],{data: byteCode, from: web3.eth.accounts[0], gas: 4700000})
+deployedContract = VotingContract.new(['Rahul Gandhi','DK Shivakumar','Ramalinga Reddy','Vijay Rupani','Arvind Kejriwal','Narendra Modi'],['Delhi','Karnataka','Karnataka','Gujarat','Gujarat','Delhi','Gujarat'],{data: byteCode, from: web3.eth.accounts[0], gas: 4700000})
 deployedContract.address
 contractInstance = VotingContract.at(deployedContract.address)
 
@@ -26,7 +26,7 @@ compiledCodeAuthentic = solc.compile(codeAuthentic)
 abiDefinitionAuthentic = JSON.parse(compiledCodeAuthentic.contracts[':Authentication'].interface)
 AuthenticContract = web3.eth.contract(abiDefinitionAuthentic)
 byteCodeAuthentic = compiledCodeAuthentic.contracts[':Authentication'].bytecode
-deployedContractAuthentic = AuthenticContract.new(['Manan','Joydeep','Sarthak'],['Kolkata','Bengaluru','Delhi'],'0x207cffc561e777175f720f4d7028bbcbd92fb06c',{data: byteCodeAuthentic, from: web3.eth.accounts[1], gas: 4700000})
+deployedContractAuthentic = AuthenticContract.new(['Manan','Joydeep','Sarthak','Danish','Shaloo','Arjun','Shakaal'],['Karnataka','Delhi','Delhi','Delhi','Karnataka','Delhi','Mumbai'],'0x6c3f6de99e60f06596d94221d1593364e5a2f919',{data: byteCodeAuthentic, from: web3.eth.accounts[1], gas: 4700000})
 
 deployedContractAuthentic.address
 

@@ -6,12 +6,12 @@ contract Voting {
   }
 
   // This function returns the total votes a candidate has received so far
-  function totalVotesFor(bytes32 candidate) returns (uint8) {
+  function totalVotesFor(bytes32 candidate) returns (uint8,bool) {
   }
 
   // This function increments the vote count for the specified candidate. This
   // is equivalent to casting a vote
-  function voteForCandidate(bytes32 candidate, bytes32 voter, bytes32 constituency) returns (bool,string) {
+  function voteForCandidate(bytes32 candidate) returns (bool,string) {
   }
 
   function getCandidateConstituency(bytes32 candidate)returns (bool,bytes32) {
@@ -65,6 +65,12 @@ contract Authentication {
     // voterList=myVoterList;
   }
 
+  function resetVoters() {
+    for(uint i = 0; i < voterList.length; i++) {
+      votesAvailable[voterList[i]] = true;
+    }
+  }
+
   function isVoterExist(bytes32 voter) returns (bool,string) {
     for(uint i = 0; i < voterList.length; i++) {
       if (voterList[i] == voter) {
@@ -107,6 +113,7 @@ contract Authentication {
     {
       return (false,validVoterString);
     }
+    votesAvailable[voter] = false;
     return (true,"success");
   }
 

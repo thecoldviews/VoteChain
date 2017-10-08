@@ -1,1 +1,0 @@
-import qreader.api
